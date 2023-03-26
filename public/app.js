@@ -1,18 +1,36 @@
 "use strict";
-const anchor = document.querySelector('a');
-if (anchor) {
-    console.log(anchor.href);
+Object.defineProperty(exports, "__esModule", { value: true });
+const Payment_1 = require("./classes/Payment");
+class Invoice {
+    constructor(c, d, a) {
+        this.client = c;
+        this.details = d;
+        this.amount = a;
+    }
+    format() {
+        return `${this.client} owes ${this.amount} for ${this.details}`;
+    }
 }
-console.log(anchor.href);
-//const form = document.querySelector('form')!;
+const invOne = new Invoice('mario', 'works on mario website', 2000);
+const invTwo = new Invoice('typho', 'works on typho website', 3000);
+let invoices = [];
+invoices.push(invOne);
+invoices.push(invTwo);
+console.log(invoices);
 const form = document.querySelector('.new-item-form');
 console.log(form.children);
-// inputs
 const type = document.querySelector('#type');
 const tofrom = document.querySelector('#tofrom');
 const details = document.querySelector('#details');
 const amount = document.querySelector('#amount');
 form.addEventListener('submit', (e) => {
     e.preventDefault();
-    console.log(type.value, tofrom.value, details.value, amount.valueAsNumber);
+    let doc;
+    if (type.value == 'invoice') {
+        doc = new Invoice(tofrom.value, details.value, amount.valueAsNumber);
+    }
+    else {
+        doc = new Payment_1.Payment(tofrom.value, details.value, amount.valueAsNumber);
+    }
+    console.log(doc);
 });
