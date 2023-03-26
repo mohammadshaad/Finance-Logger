@@ -1,33 +1,6 @@
-import { Invoice } from "./classes/Invoice";
-import { Payment } from './classes/Payment'
-import { HasFormatter } from "./interfaces/HasFormatter";
-
-
-class Invoice {
-  client: string;
-  details: string;
-  amount: number;
-
-  constructor(c: string, d: string, a: number) {
-    this.client = c;
-    this.details = d;
-    this.amount = a;
-  }
-
-  format() {
-    return `${this.client} owes ${this.amount} for ${this.details}`;
-  }
-}
-
-const invOne = new Invoice('mario', 'works on mario website', 2000);
-const invTwo = new Invoice('typho', 'works on typho website', 3000);
-
-let invoices: Invoice[] = [];
-
-invoices.push(invOne);
-invoices.push(invTwo);
-
-console.log(invoices);
+import { Invoice } from "./classes/Invoice.js";
+import { Payment } from './classes/Payment.js'
+import { HasFormatter } from "./interfaces/HasFormatter.js";
 
 const form = document.querySelector('.new-item-form') as HTMLFormElement;
 console.log(form.children);
